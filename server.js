@@ -1,6 +1,17 @@
-var http = require('http')
-var port = process.env.PORT || 1337;
-http.createServer(function(req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello azure\n');
-}).listen(port);
+var blobService = azure.createBlobService();
+
+blobService.createContainerIfNotExists(image_uploads, function(error){
+    if(!error){
+        // Container exists and is private
+    }
+});
+
+
+blobService.createBlockBlobFromFile(image_uploads
+    , 'test1'
+    , 'test1.txt'
+    , function(error){
+        if(!error){
+            // File has been uploaded
+        }
+    });
